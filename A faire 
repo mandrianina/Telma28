@@ -1,0 +1,20 @@
+A faire :
+- ajout de verification avant sortie d'une page ( en cas d'oubli de sauvegarde )
+- accuracy devient pour le calcul minimum dans le tableau
+- ajout d'un bouton pour pouvoir sauvergarder le tableau sous un autre région et référence
+- validation des formulaires 
+- migration des calculs vers Javascript
+- Bouton pour calculer les valeurs minimales et par Débit attribué 
+- Sauvegarde automatique après modification
+- Taille fixe des cellules 
+//- Aide et informations interactives
+//- Reconnaissance automatique des lignes
+//- Vider les offres dans un région ou une référence
+//- Selecteur 'point virgule ou virgule'
+//- Apercu des importations avant sauvegarde définitive
+//- Ajout d'offres fixes et javascript
+//- Positionement
+
+
+Faits:
+//- Ajout et suppression de ligne dans la table

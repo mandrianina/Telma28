@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Telma{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets 
+        '@TelmaDashboardBundle/Resources/public/css/bootstrap.css' filter='cssrewrite'
+        '@TelmaDashboardBundle/Resources/public/css/styles.css' filter='cssrewrite'
+        '@TelmaDashboardBundle/Resources/public/css/jquery-ui.css' filter='cssrewrite'
+        '@TelmaDashboardBundle/Resources/public/css/index.css' filter='cssrewrite'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+  </head>
+  
+  {% block body %}
+  {% endblock %}
+
+  {% block javascripts %}
+    {% javascripts '@TelmaDashboardBundle/Resources/public/js/jquery.js'
+                   '@TelmaDashboardBundle/Resources/public/js/bootstrap.js'
+                   '@TelmaDashboardBundle/Resources/public/js/custom.js'
+                   '@TelmaDashboardBundle/Resources/public/js/jquery-ui.js'
+                   '@TelmaDashboardBundle/Resources/public/js/policyAjax.js'
+                   '@TelmaDashboardBundle/Resources/public/js/customTab.js'  
+                   '@TelmaDashboardBundle/Resources/public/js/holder.js'
+                 %}
+      <script src="{{ asset_url }}"></script>
+            
+    {% endjavascripts %}
+
+  {% endblock %}
+</body>
+</html>

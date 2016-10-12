@@ -1,0 +1,183 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% block title %}
+Index - {{ parent() }}
+{% endblock %}
+
+
+{% block telmadashboard_body %} 
+<div class="row">
+<div class="col-lg-6 col-md-6">
+		  			<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">{{ 'index.choice.titre'|trans }}</div>
+							
+							<div class="panel-options">
+								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+							</div>
+						</div>
+		  				<div class="panel-body">
+		  				<br />
+		  					<form class="form-horizontal" method="get" action="{{ path('telma_dashboard_viewedit') }}" >
+		  						<div class="form-group">
+									<label for="a" class="col-sm-2 control-label">{{ 'index.choice.label.reference'|trans }} :</label>
+									<div class="col-sm-9">
+										<select name="reference" id="a" class="form-control ref">
+                                                                                    <option value ="null"> Choisir référence </option>
+											{% for reference in arrayReferences %}
+												<option value = {{ reference }}> {{ reference }} </option>
+											{% endfor %}
+										</select>      
+									</div>
+                                                                        
+								</div>
+
+                                                        <div class="afterRef">
+								<div class="form-group">
+									<label for="b" class="col-sm-2 control-label">{{ 'index.choice.label.region'|trans }}</label>
+									<div class="col-sm-10">
+										
+                                                                                <select class="reg form-control" id="b" name="region">
+
+                                                                                </select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" value="View" class="viewbtn btn btn-primary">{{ 'index.choice.label.submit'|trans }}</button>
+									</div>
+								</div>
+                                                        </div>
+							</form>
+							<br />
+		  				</div>
+		  			</div>
+</div>
+<div class="col-md-6">
+	<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">{{ 'index.info.titre'|trans }}</div>
+							
+							<div class="panel-options">
+								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+							</div>
+						</div>
+		  				<div class="panel-body">
+		  				{{ 'index.info.contenu'|trans }} ;) ...
+		  				</div>
+	</div>
+</div>
+
+<div class="col-md-12">
+	<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">{{ 'index.settings.titre'|trans }}</div>
+							
+							<div class="panel-options">
+								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+							</div>
+						</div>
+		  				<div class="panel-body">
+
+
+
+
+
+		  				<div id="rootwizard">
+								<div class="navbar">
+								  <div class="navbar-inner">
+								    <div class="container">
+								<ul class="nav nav-pills">
+								  	<li class="active"><a href="#tab1" data-toggle="tab">{{ 'index.settings.tab.first'|trans }}</a></li>
+									<li><a href="#tab2" data-toggle="tab">{{ 'index.settings.tab.second'|trans }}</a></li>
+								</ul>
+								 </div>
+								  </div>
+								</div>
+								<div class="tab-content">
+								    <div class="tab-pane active" id="tab1">
+                                                                        <div class="row">
+									    {{ form_start(form, {'attr' : {'class': 'form'}}) }}
+                                                                            <div class="col-md-12">
+                                                                                <div class="row form-group">
+                                                                                    <div class="col-md-1">
+                                                                                            {{ form_label(form.stm16, "STM16 : ") }}
+                                                                                    </div>
+                                                                                            {{ form_errors(form.stm16) }}
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="input-group">   
+                                                                                            {{ form_widget(form.stm16) }}
+                                                                                            <div class="input-group-addon">Mo</div>
+                                                                                            <br />
+                                                                                        </div> 
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="col-md-12">
+                                                                                <div class="row form-group">
+                                                                                    <div class="col-md-1">
+                                                                                            {{ form_label(form.stm4, "STM4 : ") }}
+                                                                                    </div>
+                                                                                            {{ form_errors(form.stm4) }}
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="input-group">   
+                                                                                            {{ form_widget(form.stm4) }}
+                                                                                            <div class="input-group-addon">Mo</div>
+                                                                                            <br />
+                                                                                        </div> 
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>                
+                                                                                               
+                                                                            <div class="col-md-12">
+                                                                                <div class="row form-group">
+                                                                                    <div class="col-md-1">
+                                                                                            {{ form_label(form.accuracy, "Accuracy") }}
+                                                                                    </div>
+                                                                                            {{ form_errors(form.accuracy) }}
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="input-group">   
+                                                                                            {{ form_widget(form.accuracy, {'attr' : {'class' : 'range'}} ) }}
+                                                                                            <div class="input-group-addon"><output></output>%</div>
+                                                                                            <br />
+                                                                                        </div> 
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                                            
+                                                                        </div>
+                                                                    </div>                                    
+								    <div class="tab-pane" id="tab2">
+								      <div class="form-group">
+								     	{{ form_label(form.offresFixes, "Offres fixes :")}}
+								     	{{ form_errors(form.offresFixes) }}
+								     	{{ form_widget(form.offresFixes, {'attr' : {'rows' : 12}} ) }}
+								     </div>
+                                                                     {{ form_rest(form) }}
+								    </div>
+	
+									{{ form_end(form) }}
+								    </div>
+								</div>	
+							</div>
+						</div>
+
+	</div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+                    '@TelmaDashboardBundle/Resources/public/js/indexAjax.js'
+                    '@TelmaDashboardBundle/Resources/public/js/scriptRange.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

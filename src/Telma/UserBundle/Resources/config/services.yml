@@ -1,0 +1,4 @@
+services:
+#    telma_user.example:
+#        class: Telma\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

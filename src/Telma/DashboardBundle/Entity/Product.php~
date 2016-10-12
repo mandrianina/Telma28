@@ -1,0 +1,120 @@
+<?php
+
+namespace Telma\DashboardBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Product
+ *
+ * @ORM\Table(name="product")
+ * @ORM\Entity(repositoryClass="Telma\DashboardBundle\Repository\ProductRepository")
+ */
+class Product
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="regionProduit", type="string", length=255)
+     */
+    private $regionProduit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="referenceProduit", type="string", length=255)
+     */
+    private $referenceProduit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="offresFixes", type="string")
+     */
+    private $offresFixes;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $fichier;
+
+    public function getFichier()
+    {
+        return $this->fichier;
+    }
+
+    public function setFichier($fichier)
+    {
+        $this->fichier = $fichier;
+
+        return $this;
+    }
+
+    /**
+     * Set regionProduit
+     *
+     * @param string $regionProduit
+     *
+     * @return Product
+     */
+    public function setRegionProduit($regionProduit)
+    {
+        $this->regionProduit = $regionProduit;
+
+        return $this;
+    }
+
+    /**
+     * Get regionProduit
+     *
+     * @return string
+     */
+    public function getRegionProduit()
+    {
+        return $this->regionProduit;
+    }
+
+    /**
+     * Set referenceProduit
+     *
+     * @param string $referenceProduit
+     *
+     * @return Product
+     */
+    public function setReferenceProduit($referenceProduit)
+    {
+        $this->referenceProduit = $referenceProduit;
+
+        return $this;
+    }
+
+    /**
+     * Get referenceProduit
+     *
+     * @return string
+     */
+    public function getReferenceProduit()
+    {
+        return $this->referenceProduit;
+    }
+}

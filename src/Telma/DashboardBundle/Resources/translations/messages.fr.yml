@@ -1,0 +1,32 @@
+
+
+
+navbartop:
+    titre: Gestion de Bande Passante
+    
+navbarleft:
+    first: Accueil
+    second: Importer
+    third: Statistiques
+    fourth: Edition des règles
+    fifth: Paramètres
+    
+index:
+    choice:
+        titre: Voir les offres
+        label:
+            reference: Référence 
+            region: Région
+            submit: Voir
+    info:
+        titre: Informations
+        contenu: Rien pour l'instant
+        
+    settings:
+        titre: Panneau de contrôle
+        tab:
+            first: Un
+            second: Deux
+        contenu:
+            accuracy: "tolérance"
+            submit: Sauvegarder

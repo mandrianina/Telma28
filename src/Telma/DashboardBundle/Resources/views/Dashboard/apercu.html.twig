@@ -1,0 +1,15 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+
+{% block telmadashboard_body %}
+    
+    <input type="button" class="button" value="Afficher"/>
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+    {% javascripts '@TelmaDashboardBundle/Resources/public/js/scriptData.js' %}
+      <script src="{{ asset_url }}"></script>    
+    {% endjavascripts %}
+
+  {% endblock %}

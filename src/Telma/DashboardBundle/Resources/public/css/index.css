@@ -1,0 +1,70 @@
+.loading{
+    float: right;
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: url('../images/loading1.gif');
+}
+
+.afterRef{
+    display: none;
+}
+
+.nomOffre{
+    width: 165px;
+}
+
+.classe{
+    width: 150px;
+}
+.type, .config, .typeDebit, .taux{
+    width:50px;
+}
+
+.maxHost,.debitMin,.debitMax,.debitMG,.debitMinObtenu, .configCalulee{
+    width: 60px;
+}
+
+.collection-actions{
+    width: 75px;
+}
+
+.table-responsive{
+    height : 40em;
+    overflow: scroll;
+}
+
+.nomEntete{
+    width: 150px;
+}
+.position{
+    width: 45px;
+}
+.is_used{
+    width: 10px;
+}
+
+.unused{
+    background: darkgray;
+}
+
+.info-total{
+    display: none;
+}
+
+
+/*.handle{
+    float: left;
+    width: 25px;
+    height: 25px;
+    display: inline;
+    background: url('../images/move.jpg');
+    background-size: 25px 25px;
+    
+}
+
+.handleCell{
+    width: 10px;
+    height: 30px;
+    font-size: 20px;
+}*/

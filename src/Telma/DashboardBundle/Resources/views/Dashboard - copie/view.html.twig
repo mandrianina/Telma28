@@ -1,0 +1,101 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% block title %}
+View - {{ parent() }}
+{% endblock %}
+
+{% block telmadashboard_header %}
+{{ parent() }} - View
+
+
+{% endblock %}
+
+{% block telmadashboard_body %}
+
+<form method="get" action="{{ path('telma_dashboard_calcul') }}">
+
+	<label for="stm16">STM 16 x</label>
+	<input type="number" name="stm16" placeholder="input value here ...">
+	<label for="stm4">STM 4 x</label>
+	<input type="number" name="others" placeholder="input value here ...">
+	<label for="others">Others (Mo) : </label>
+	<input type="number" name="others" placeholder="input value here ...">
+	<input type="hidden" name="reference" value={{ reference }} >
+	<input type="hidden" name="region" value={{ region }} >
+
+	<button type="submit" value="Calculer" class="btn btn-default">Calculate</button>
+</form>
+
+{% if a is defined %}
+	<p>Total des stms : {{ a }}</p>
+	<p>Total des stms - Offres fixe : {{ b }}</p>
+	<p>Reste à distribuer : {{ c }}</p>
+{% endif %}
+	<table class="table table-bordered table-striped table-responsive table-hover table-condensed" style="text-align: center;">
+	
+			<thead>
+				<tr style="vertical-align: top;">
+				{% for nomOffre in listOffre %}
+					<th style="text-align: center;">{{ nomOffre|upper }}</th>
+				{% endfor %}
+				</tr>
+			</thead>
+
+			<tbody class="offres" data-prototype="
+			<td>{{ form_widget(form.offres.vars.prototype.classe)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.nomOffre)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.type)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.config)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.typeDebit)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.typeConnexion)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.maxHost)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.debitMax)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.debitMin)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.debitMaxGlobal)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.debitMinObtenu)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.taux)|e('html_attr') }}</td>
+			<td>{{ form_widget(form.offres.vars.prototype.configCalculee)|e('html_attr') }}</td>">
+			{{ form_start(form, {'attr' : {'class': 'form-horizontal'}}) }}
+			{% for offre in form.offres %}
+			<tr>
+				<td class="col-xs-1">{{ form_widget(offre.classe, {'attr' : {'readonly' : 'readonly'}})}}</td>
+				<td class="col-xs-2">{{ form_widget(offre.nomOffre) }}</td>
+				<td class="col-xs-1"> {{ form_widget(offre.type) }}	</td>
+				<td class="col-xs-1" >{{ form_widget(offre.config) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.typeDebit) }}</td>
+				<td >{{ form_widget(offre.typeConnexion) }}</td>
+				<td class="col-xs-1"> {{ form_widget(offre.maxHost) }}</td>
+				<td class="col-xs-1" > {{ form_widget(offre.debitMax) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.debitMin) }}</td>
+				<td class="col-xs-1" >{{ form_widget(offre.debitMaxGlobal) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.debitMinObtenu) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.taux) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.configCalculee) }}</td>
+			</tr>
+			{% endfor %}
+   
+			</tbody>
+			{{ form_rest(form) }}
+			{{ form_end(form)  }}
+			
+			</tbody>
+			<tfoot style="font-weight: bold;">
+				<tr>
+					<td colspan="4">Total General</td>
+					<td></td>
+					<td>{% if maxHost is defined %}{{ maxHost }}{% endif %}
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>{% if maxGlobal is defined %}{{ maxGlobal }}{% endif %}
+					</td>
+					<td>{% if debitMinimum is defined %}{{ debitMinimum }}{% endif %}
+					</td>
+					<td></td>
+					<td>{% if configCalculee is defined %}{{ configCalculee }}{% endif %}
+					</td>
+				</tr>
+			</tfoot>			
+	</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% block title %}
+Policy Overview - {{ parent() }}
+{% endblock %}
+
+{% block telmadashboard_header %}
+{{ parent() }} - Policy 
+{% endblock %}
+
+{% block telmadashboard_body %}
+
+<div class="well">
+<form>
+<label for="textearea">Policy file : </label>
+<textarea id="textearea" type="textarea" class="form-control input-lg" placeholder="L'apercu du fichier policy se trouvera ici">
+{{ matrice }}
+</textarea>
+<button class="btn btn-default" type="button">Save</button>
+</form>
+</div>
+
+
+{% endblock %}

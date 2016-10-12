@@ -1,0 +1,32 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% block title %}
+ 	Import - {{ parent ()}}
+{% endblock %}
+
+{% block telmadashboard_header %}
+{{ parent() }} - Import
+{% endblock %}
+
+
+{% block telmadashboard_body %}
+
+<div class="form-import">
+{{ form_start(form, {'attr' : {'class': 'form-horizontal'}}) }}
+{{ form_label(form.referenceProduit, "Reference du fichier ") }}
+{{ form_errors(form.referenceProduit) }}
+{{ form_widget(form.referenceProduit) }}
+
+{{ form_label(form.regionProduit, "Region de la configuration ") }}
+{{ form_errors(form.regionProduit) }}
+{{ form_widget(form.regionProduit) }}
+
+{{ form_rest(form) }}
+
+{{ form_end(form)}}
+</div>
+
+<p>
+<a href="{{ path('telma_dashboard_homepage') }}"><i class="glyphicon glyphicon-chevron-left"></i>Back to overview</a>
+</p>
+{% endblock %}

@@ -1,0 +1,35 @@
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+Dashboard - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+   
+{% include 'navbartop.html' %}
+
+<div class="col-lg-12 page-content">
+  <div class="row"> 
+            
+            {% include 'navbarleft.html' %}
+            <div class="col-md-10">
+            {% block telmadashboard_body %}
+            {% endblock %} 
+            </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{%  block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+{%  endblock %}

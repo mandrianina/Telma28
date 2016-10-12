@@ -1,0 +1,45 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% block telmadashboard_body %}
+    
+<div class="col-md-12">
+    <div class="content-box-large">
+            <div class="panel-heading">
+                    <div class="panel-title">Edition des entetes de page</div>
+                    
+
+                <div class="panel-options">             
+                </div>
+            </div>
+            <div class="panel-body "> 
+
+                <div class="col-md-5">
+                   {% form_theme form 'TelmaDashboardBundle::jquery.collection.html.twig'
+                           'TelmaDashboardBundle::customtabentete.collection.html.twig' %}
+                    {{ form(form) }}
+                </div>
+
+            </div>
+    </div>
+</div>    
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@TelmaDashboardBundle/Resources/public/js/jquery.collection.js'
+                   '@TelmaDashboardBundle/Resources/public/js/scriptEntete.js'
+                 %}
+      <script src="{{ asset_url }}"></script>
+            
+    {% endjavascripts %}
+{% endblock %}

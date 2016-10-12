@@ -1,0 +1,97 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% set page = "reports" %}
+
+{% block title %}
+Reports - {{ parent() }}
+{% endblock %}
+
+{% block telmadashboard_body %}
+
+<div class="row">
+<div class="col-md-12">
+<div class="content-box-large">
+	<div class="panel-heading">
+ 		<div class="panel-title">Options </div>
+ 	<div class="panel-options">
+		<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+		<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+	</div>
+	</div>
+
+	<div class="panel-body">
+	 <div class="row">
+<form class="form-vertical" method="get" action="{{ path('telma_dashboard_reports') }}" >
+	<div class="col-sm-4">
+		<label for="a" class="label-control">Référence</label>
+		<select id="a" name="reference" class="ref form-control">
+                    <option value ="null"> Choisir référence </option>
+		{% for reference in arrayReferences %}
+			<option value = {{ reference }}  {% if reference == referenceChoisi %} selected="selected" {% endif %} > {{ reference }} </option>
+		{% endfor %}
+		</select>
+	</div>
+
+        <div class="afterRef">
+            <div class="col-sm-4">
+                    <label for="b" class="label-control">Région</label>
+                    <select id="b" name="region" class="reg form-control">
+                    {#% for region in arrayRegions %}
+                            <option value = {{ region }} {% if region == regionChoisi %} selected="selected" {% endif %}> {{ region }} </option>
+                    {% endfor %#}
+                    </select>
+            </div>
+
+            <div class="col-sm-4">
+                    <label for="c" class="label-control">Critère</label>
+                    <select id="c" name="column" class="form-control">
+                    {% for column in arrayColumn %}
+                            <option value = {{ column }} {% if column == columnChoisi %} selected="selected" {% endif %}> {{ column }} </option>
+                    {% endfor %}
+                    </select>
+            </div>
+
+            <div class="col-sm-12">
+                    <br />
+                    <button type="submit" value="View" class="btn btn-default" class="form-control">View</button>
+            </div>
+        </div>
+</form>
+	</div>
+ </div>
+</div>
+
+<div class="col-md-12">
+<div class="content-box-large">
+	<div class="panel-heading">
+ 	<div class="panel-options">
+		<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+		<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+	</div>
+	</div>
+
+	<div class="panel-body">
+		<div id="container" style="min-width: 410px; height: 400px; margin: 0 auto"></div>
+	</div>
+</div>
+{% if datas is defined %}
+<input type="hidden" id="entete" value="{% for head,data in datas %}{{ head }};{% endfor %}"></input>
+
+<input type="hidden" id="datas" value="{% for data in datas %}{{ data }};{% endfor %}"></input>
+{% endif %}
+
+</div>
+</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@TelmaDashboardBundle/Resources/public/js/indexAjax.js'
+                   '@TelmaDashboardBundle/Resources/public/js/scriptColumn.js'
+                   '@TelmaDashboardBundle/Resources/public/js/data.js' 
+                   '@TelmaDashboardBundle/Resources/public/js/highcharts.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

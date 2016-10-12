@@ -1,0 +1,53 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@TelmaUserBundle/Resources/public/css/style.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block fos_user_content %}
+<div class="pen-title">
+  <h1>Bandwidth Management Login</h1><span> <i class='fa fa-code'></i><a href="#">Telma</a></span>
+</div>
+<div class="rerun"><a href="">Reload</a></div>
+<div class="container">
+  <div class="card"></div>
+  <div class="card">
+      {% if error %}
+    	<h1 class="title">{{ error|trans({}, 'FOSUserBundle') }}</h1>
+      {% else %}
+        <h1 class="title">Login</h1>
+      {% endif %}
+   
+		
+		<form action="{{ path("fos_user_security_check") }}" method="post" class="form-vertical">
+    		
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <div class="input-container">      
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" >
+                    <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                    <div class="bar"></div>
+                </div>
+                
+                <div class="input-container">
+                    <input type="password" id="password" name="_password" required="required" >
+                    <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="button-container">
+                    <input class="btn btn-login" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+                </div>
+            </form>
+                    
+  </div>
+</div>
+{% endblock fos_user_content %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@TelmaUserBundle/Resources/public/js/index.js'
+                 %}
+      <script src="{{ asset_url }}"></script>
+            
+{% endjavascripts %}
+{% endblock %}

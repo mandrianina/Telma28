@@ -1,0 +1,59 @@
+
+
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% set page = "reports" %}
+
+{% block title %}
+Reports - {{ parent() }}
+{% endblock %}
+
+{% block telmadashboard_header %}
+{{ parent() }} - Reports
+
+<form method="get" action="{{ path('telma_dashboard_reports') }}">
+	<select name="reference" class="ref" >
+		{% for reference in arrayReferences %}
+			<option value = {{ reference }}> {{ reference }} </option>
+		{% endfor %}
+	</select>
+
+        <div class="afterRef">
+            <select name="region" class="reg">
+                    {#% for region in arrayRegions %}
+                            <option value = {{ region }} > {{ region }} </option>
+                    {% endfor %#}
+            </select>
+
+            <select name="column">
+                    {% for column in arrayColumn %}
+                            <option value = {{ column }} > {{ column }} </option>
+                    {% endfor %}
+            </select>
+        </div>
+
+	<button type="submit" value="View" class="btn btn-default">Views</button>
+</form>
+{% endblock %}
+
+{% block telmadashboard_body %}
+<div id="chart">
+  <p>Variations on Greeting the World</p>
+
+  <canvas id="canvas" width="1000" height="800">
+    No Love for HTML5 eh?
+  </canvas>
+</div>
+
+{% block telmadashboard_reports_chart %}
+
+{% endblock %}
+
+{% if datas is defined %}
+<input type="hidden" id="entete" value="{% for head,data in datas %}{{ head }}{% endfor %}"></input>
+
+<input type="hidden" id="datas" value="{% for data in datas %}{{ data }}{% endfor %}"></input>
+{% endif %}
+
+
+{% endblock %} 

@@ -1,0 +1,33 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% block title %}
+Index - {{ parent() }}
+{% endblock %}
+
+{% block telmadashboard_header %}
+{{ parent() }} - Index
+{% endblock %}
+
+{% block telmadashboard_body %}
+
+<form method="get" action="{{ path('telma_dashboard_view') }}">
+	<select name="reference">
+		{% for reference in arrayReferences %}
+			<option value = {{ reference }}> {{ reference }} </option>
+		{% endfor %}
+	</select>
+
+	<select name="region">
+		{% for region in arrayRegions %}
+			<option value = {{ region }} > {{ region }} </option>
+		{% endfor %}
+	</select>
+
+	<button type="submit" value="View" class="btn btn-default">View</button>
+</form>
+
+<h3>Settings</h3>
+
+
+
+{% endblock %}

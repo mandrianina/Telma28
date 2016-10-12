@@ -1,0 +1,82 @@
+{% block collection_widget %}
+{% spaceless %}
+    {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+        {% endif %}
+        {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+        {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+        {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+ <div class="col-lg-12 table-responsive">
+    <table class="table table-bordered table-striped table-hover table-condensed">
+        <thead>
+		<tr style="vertical-align: top;">
+                    <th> </th>
+                    <th>Classe</th>
+                    <th>Offre</th>
+                    <th>Type</th>
+                    <th>D/T</th>
+                    <th>NG/G</th>
+                    <th>Fixe</th>
+                    <th>Max Host</th>
+                    <th>Max/bd(ko)</th>
+                    <th>Min/bd(ko)</th>
+                    <th>Max/Off(Mo)</th>
+                    <th>MinObtenu(ko)</th>
+                    <th>Taux</th>
+                    <th>Config</th>
+		</tr>
+	</thead>
+        <tbody  data-prototype="<tr class='element'>
+                        <td>{{ form_widget(prototype.isSelected)|e('html_attr') }}</td>
+                        {{ form_widget(prototype.position)|e('html_attr') }}
+			<td class='td-classe' contenteditable='true' onBlur='saveContent(this);'></td>{{ form_widget(prototype.classe)|e('html_attr') }}
+			<td class='td-nomOffre' contenteditable='true' onBlur='saveContent(this);'></td>{{ form_widget(prototype.nomOffre)|e('html_attr') }}
+			<td class='td-type' contenteditable='true' onBlur='saveContent(this);'></td>{{ form_widget(prototype.type)|e('html_attr') }}
+			<td class='td-config' contenteditable='true' onBlur='saveContent(this);'></td>{{ form_widget(prototype.config)|e('html_attr') }}
+			<td class='td-typeDebit' contenteditable='true' onBlur='saveContent(this);'></td>{{ form_widget(prototype.typeDebit)|e('html_attr') }}
+			<td>{{ form_widget(prototype.typeConnexion)|e('html_attr') }}</td>
+			<td class='td-maxHost' onBlur='saveContent(this);'></td>{{ form_widget(prototype.maxHost)|e('html_attr') }}
+			<td class='td-debitMax' contenteditable='true' onBlur='saveContent(this);'></td>{{ form_widget(prototype.debitMax)|e('html_attr') }}
+			<td class='td-debitMin' contenteditable='true' onBlur='saveContent(this);'></td>{{ form_widget(prototype.debitMin)|e('html_attr') }}
+			<td class='td-debitMaxGlobal'  onBlur='saveContent(this);'></td>{{ form_widget(prototype.debitMaxGlobal)|e('html_attr') }}
+			<td class='td-debitMinObtenu'  onBlur='saveContent(this);'></td>{{ form_widget(prototype.debitMinObtenu)|e('html_attr') }}
+			<td class='td-taux' onBlur='saveContent(this);'></td>{{ form_widget(prototype.taux)|e('html_attr') }}
+			<td class='td-configCalculee' onBlur='saveContent(this);'></td>{{ form_widget(prototype.configCalculee)|e('html_attr') }}</tr>" {{ block('widget_container_attributes') }}>
+            {{ form_errors(form) }}
+            {% for offre in form %}
+                <tr class="element">
+                                <td>{{ form_widget(offre.isSelected) }}</td>
+                                {{ form_widget(offre.position) }}
+                                <td  class="td-classe" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.classe, {'attr' : {'readonly' : 'readonly'}})}}
+				<td  class="td-nomOffre" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.nomOffre) }}
+				<td  class="td-type" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.type) }}	
+				<td  class="td-config" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.config) }}
+				<td  class="td-typeDebit" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.typeDebit) }}
+				<td>{{ form_widget(offre.typeConnexion) }}</td>
+				<td  class="td-maxHost" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.maxHost) }}
+				<td  class="td-debitMax" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.debitMax) }}
+				<td  class="td-debitMin" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.debitMin) }}
+				<td  class="td-debitMaxGlobal" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.debitMaxGlobal) }}
+				<td  class="td-debitMinObtenu" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.debitMinObtenu) }}
+				<td  class="td-taux" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.taux) }}
+				<td  class="td-configCalculee" contenteditable="true" onBlur="saveContent(this);"></td>
+                                    {{ form_widget(offre.configCalculee) }}        
+                </tr>                    
+            {% endfor %}
+        </tbody>
+            {{ form_rest(form) }}
+    </table>
+ </div>
+{% endspaceless %}
+{% endblock collection_widget %}

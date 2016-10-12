@@ -1,0 +1,40 @@
+<?php
+
+namespace Telma\DashboardBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Head
+ *
+ * @ORM\Table(name="head")
+ * @ORM\Entity(repositoryClass="Telma\DashboardBundle\Repository\HeadRepository")
+ */
+class Head
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="entetes", type="string", length=255)
+     */
+    private $entetes;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

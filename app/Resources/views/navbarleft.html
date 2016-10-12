@@ -1,0 +1,47 @@
+<div class="col-lg-2 col-md-2">
+		  	<div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li 
+                    {% if page == "index" %}
+            		class ="current"
+            		{% endif %}><a href="{{ path('telma_dashboard_homepage') }}"><i class="glyphicon glyphicon-home"></i> {{ 'navbarleft.first'|trans }}</a></li>
+                    <li
+					{% if page == "import" %}
+            		class ="current"
+            		{% endif %}
+                    ><a href="{{ path('telma_dashboard_import') }}"><i class="glyphicon glyphicon-calendar"></i> {{ 'navbarleft.second'|trans }}</a></li>
+                    <li
+                    {% if page == "reports" %}
+            		class ="current"
+            		{% endif %}
+                    ><a href="{{ path('telma_dashboard_reports') }}"><i class="glyphicon glyphicon-stats"></i> {{ 'navbarleft.third'|trans }}</a></li>
+                    {% if page == "policy" %}
+                    <li
+            		class ="current"	
+                    ><a href="{{ path('telma_dashboard_policy') }}"><i class="glyphicon glyphicon-list"></i> Policy</a></li>
+                    {% endif %}
+                    <li
+                    {% if page == "rules" %}
+                    class ="current"
+                    {% endif %}
+                    ><a href="{{ path('telma_dashboard_addrules') }}"><i class="glyphicon glyphicon-pencil"></i> {{ 'navbarleft.fourth'|trans }}</a></li>
+
+                    <li class="submenu" 
+                            {% if page == "db"  %}
+                            class ="current"
+                            {% endif %}
+                    >
+                         <a href="#">
+                            <i class="glyphicon glyphicon-exclamation-sign"></i> {{ 'navbarleft.fifth'|trans }}<span class="caret pull-right"></span>
+                         </a>
+                         <!-- Sub menu -->
+                         <ul>
+                             <li><a href="{{ path('telma_dashboard_loaddefault') }}"><i class="glyphicon glyphicon-alert"></i> Charger les paramètres par défaut</a></li>
+                            <li><a href="{{ path('telma_dashboard_resetdb') }}"><i class="glyphicon glyphicon-alert"></i> Supprimer tous les offres</a></li>
+                            <li><a href="{{ path('telma_dashboard_resetparam') }}"><i class="glyphicon glyphicon-alert"></i> Réinitialiser</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+</div>

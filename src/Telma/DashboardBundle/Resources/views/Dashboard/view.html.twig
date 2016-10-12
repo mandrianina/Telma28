@@ -1,0 +1,176 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+{% block title %}
+View - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block telmadashboard_body %}
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="row">
+			<div class="col-md-8">
+				<div class="content-box-large">
+					<div class="panel-heading">
+						<div class="panel-title">Bandwidth value </div>
+							
+						<div class="panel-options">
+							<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+							<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+						</div>
+					</div>
+					<div class="panel-body">
+<!-- form start -->
+						<form class="form-vertical" method="get" action="{{ path('telma_dashboard_calcul') }}">
+							<div class="row">
+						 		<div class=" col-sm-4">
+									<label for="stm16" class="label-control">STM 16 x</label>
+									<input type="number" class="form-control" name="stm16" placeholder="input value here ...">
+								</div>
+								<div class="col-sm-4">
+									<label for="stm4" class="label-control" >STM 4 x</label>
+									<input type="number" class="form-control" name="others" placeholder="input value here ...">
+								</div>
+								<div class="col-sm-4">
+									<label for="others" class="label-control" >Others (Mo) : </label>
+									<input type="number" class="form-control" name="others" placeholder="input value here ...">
+								</div>
+								<div class="form-group">
+									<input type="hidden" name="reference" value={{ reference }} >
+									<input type="hidden" name="region" value={{ region }} >
+								</div>
+
+								<div class="col-sm-12">
+									<input type="submit" value="Calculer" class="btn btn-default form-control"></input>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="content-box-large">
+					<div class="panel-heading">
+						<div class="panel-title">Results</div>
+							
+						<div class="panel-options">
+							<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+							<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+						</div>
+					</div>
+					<div class="panel-body">
+						{% if a != null %}
+							<p>Total des stms : {{ a }}</p>
+							<p>Total des stms - Offres fixe : {{ b }}</p>
+							<p>Reste à distribuer : {{ c }}</p>
+                                                {% else %}
+                                                    <p>No result calculated yet </p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--form end -->
+
+<div class="col-md-12">
+
+<div class="content-box-large">
+	<div class="panel-heading">
+		<div class="panel-title">Offers value</div>
+							
+	<div class="panel-options">
+		<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+		<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+	</div>
+	</div>
+<div class="panel-body">
+    <div class="addOffre">
+        <form method="POST" action="{{ path('telma_dashboard_addoffre') }}">
+             <input type=""/>
+        </form>        
+    </div>  
+    <form method="GET" action="{{ path('telma_dashboard_policy') }}">
+        <input type="hidden" value="{{ reference }}" name="reference"/>
+        <input type="hidden" value="{{ region }}" name="region"/>
+        <input type="submit" value="View policy output" class="btn btn-primary" />
+    </form>
+        <table class="table table-bordered table-striped table-responsive table-hover table-condensed resizable" style="text-align: center;">
+	
+			<thead>
+				<tr style="vertical-align: top;">
+				{% for nomOffre in listOffre %}
+					<th style="text-align: center;">{{ nomOffre|upper }}</th>
+				{% endfor %}
+				</tr>
+			</thead>
+
+                        <tbody class="offres" >
+			{{ form_start(form, {'attr' : {'class': 'form-horizontal'}}) }}
+			{% for offre in form.offres %}
+                       
+                        
+			<tr>  
+                                
+                                <td class="col-xs-1 handleCell"><div class="handle" ></div>{{ form_widget(offre.position) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.classe, {'attr' : {'readonly' : 'readonly'}})}}</td>
+				<td class="col-xs-2">{{ form_widget(offre.nomOffre) }}</td>
+				<td class="col-xs-1"> {{ form_widget(offre.type) }}	</td>
+				<td class="col-xs-1" >{{ form_widget(offre.config) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.typeDebit) }}</td>
+				<td >{{ form_widget(offre.typeConnexion) }}</td>
+				<td class="col-xs-1"> {{ form_widget(offre.maxHost) }}</td>
+				<td class="col-xs-1" > {{ form_widget(offre.debitMax) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.debitMin) }}</td>
+				<td class="col-xs-1" >{{ form_widget(offre.debitMaxGlobal) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.debitMinObtenu) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.taux) }}</td>
+				<td class="col-xs-1">{{ form_widget(offre.configCalculee) }}</td>
+			</tr>
+			{% endfor %}
+   
+			</tbody>
+			{{ form_rest(form) }}
+			{{ form_end(form)  }}
+			
+			</tbody>
+			<tfoot style="font-weight: bold;">
+				<tr>
+					<td colspan="4">Total General</td>
+					<td></td>
+					<td>{% if maxHost is defined %}{{ maxHost }}{% endif %}
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>{% if maxGlobal is defined %}{{ maxGlobal }}{% endif %}
+					</td>
+					<td>{% if debitMinimum is defined %}{{ debitMinimum }}{% endif %}
+					</td>
+					<td></td>
+					<td>{% if configCalculee is defined %}{{ configCalculee }}{% endif %}
+					</td>
+				</tr>
+			</tfoot>			
+	</table>
+</div>
+</div>
+<!-- end panel -->
+
+</div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+                    '@TelmaDashboardBundle/Resources/public/js/order.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "TelmaDashboardBundle::layout.html.twig" %}
+
+
+{% block telmadashboard_body %} 
+
+    <div class="content-box-large">
+            <div class="panel-heading">
+                <div class="panel-title">Offers value</div>
+                <div class="panel-options">
+                    <div class="row" >
+                        <div class="col-md-6">
+                            <form class="form-vertical" method="get" action="{{ path('telma_dashboard_calcul') }}">
+                                <div class="row">
+                                        
+                                             
+                                    
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12 info-total">
+                                            <p>Ceci n'est valable que pour les offres non fixes !!!<p>
+                                            </div>
+                                                <label for="others" class="label-control" >Total (Mo) : </label>
+                                                <input type="number" class="form-control input-total" name="others" placeholder="input value here ...">
+                                        </div>
+                                        <div class="form-group">
+                                                <input type="hidden" name="reference" value={{ reference }} >
+                                                <input type="hidden" name="region" value={{ region }} >
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                                <input type="submit" value="Distribuer" class="btn btn-default form-control"></input>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form method="GET" action="{{ path('telma_dashboard_calculSTD') }}">
+                                                            <input type="hidden" value="{{ reference }}" name="reference"/>
+                                                            <input type="hidden" value="{{ region }}" name="region"/>
+
+                                                            <input type="submit" value="Calculer les valeurs minimales" class="btn btn-default form-control" />
+                                                        </form>
+                            <form method="GET" action="{{ path('telma_dashboard_policy') }}">
+                                <input type="hidden" value="{{ reference }}" name="reference"/>
+                                <input type="hidden" value="{{ region }}" name="region"/>
+                                <input type="submit" value="Voir le fichier policy correspondant"  class="btn btn-default form-control" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body "> 
+
+
+                    {% form_theme form 'TelmaDashboardBundle::jquery.collection.html.twig'
+                                           'TelmaDashboardBundle::customTab.collection.html.twig' %}
+                    {{ form(form) }}
+
+            </div>
+    </div>
+    <!-- end panel -->
+  
+            
+
+{% endblock %}
+
+  {% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@TelmaDashboardBundle/Resources/public/js/jquery.collection.js'
+                   '@TelmaDashboardBundle/Resources/public/js/scriptData.js'
+                 %}
+      <script src="{{ asset_url }}"></script>
+            
+    {% endjavascripts %}
+
+  {% endblock %}

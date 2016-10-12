@@ -1,0 +1,19 @@
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+Dashboard - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<h1 class="page-header">
+{% block telmadashboard_header %}
+Dashboard
+{% endblock %}
+</h1>
+
+{% block telmadashboard_body %}
+{% endblock %}
+
+{% endblock %}

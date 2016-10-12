@@ -1,0 +1,44 @@
+{% extends 'TelmaDashboardBundle::layout.html.twig' %}
+
+{% block telmadashboard_body %}
+<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">
+							{% if page == "db" %}
+							Reset all offers
+							{% endif %}
+							{% if page == "param" %}
+							Reset all parameters
+							{% endif %}
+							</div>
+							
+							<div class="panel-options">
+								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+							</div>
+						</div>
+		  				<div class="panel-body">
+		  					{% if page == "db" %}
+		  					<p>Vous êtes sûr de vouloir supprimer tous les offres ?</p>
+		  					{% endif %}
+		  					{% if page == "param" %}
+							<p>ÊTES VOUS SÛR DE VOULOIR REMETTRE A DÉFAUT LES PARAMÈTRES ?</p>
+							{% endif %}
+
+							<form method="post" action=
+
+							{% if page == "db" %}
+		  					"{{ path('telma_dashboard_resetdb') }}"
+		  					{% endif %}
+		  					{% if page == "param" %}
+							"{{ path('telma_dashboard_resetparam') }}"
+							{% endif %}
+							
+							 class="form-control" >
+								<input name="token" type="hidden" value="0192837465#" />
+								<input type="submit" value="Confirm" />
+							</form>
+						</div>
+</div>
+
+{% endblock %}

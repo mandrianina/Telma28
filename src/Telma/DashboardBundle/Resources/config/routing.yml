@@ -1,0 +1,101 @@
+telma_dashboard_homepage:
+    path:     /
+    defaults:
+     _controller: TelmaDashboardBundle:Main:index
+
+telma_dashboard_import:
+    path:     /import
+    defaults:
+      _controller: TelmaDashboardBundle:Main:import
+      
+telma_dashboard_enteteEdit:
+    path:     /enteteEdit
+    defaults:
+      _controller: TelmaDashboardBundle:Main:editEntete
+      
+telma_dashboard_reports:
+    path:     /reports
+    defaults:
+      _controller: TelmaDashboardBundle:Main:reports
+
+telma_dashboard_policy:
+    path:     /policy 
+    defaults:
+      _controller: TelmaDashboardBundle:Policy:policy
+
+telma_dashboard_addrules:
+    path:     /addrules 
+    defaults:
+      _controller: TelmaDashboardBundle:Policy:addrules
+
+telma_dashboard_addoffre:
+    path:     /addoffre
+    defaults:
+      _controller: TelmaDashboardBundle:Main:addoffre
+
+telma_dashboard_apercu:
+    path:     /apercu
+    defaults:
+      _controller: TelmaDashboardBundle:Tab:apercu
+      
+telma_dashboard_getcontenu:
+    path:     /getcontenu/
+    defaults:
+      _controller: TelmaDashboardBundle:Policy:getContenu
+    options:
+        expose: true
+        
+telma_dashboard_getdata:
+    path:     /getdata
+    defaults:
+      _controller: TelmaDashboardBundle:Policy:getData
+    options:
+        expose: true
+        
+telma_dashboard_getRegion:
+    path:     /getRegion/{reference}
+    defaults:
+      _controller: TelmaDashboardBundle:Main:getRegion
+    options:
+        expose: true
+
+telma_dashboard_view:
+    path:     /view
+    defaults:
+      _controller: TelmaDashboardBundle:Main:view
+      
+telma_dashboard_viewedit:
+    path:     /viewedit
+    defaults:
+      _controller: TelmaDashboardBundle:Main:viewedit
+      
+      
+telma_dashboard_grid:
+    path:     /grid
+    defaults:
+      _controller: TelmaDashboardBundle:Tab:myGrid
+
+telma_dashboard_calcul:
+    path:     /calcul
+    defaults:
+      _controller: TelmaDashboardBundle:Tab:calcul
+      
+telma_dashboard_calculSTD:
+    path:     /calculSTD
+    defaults:
+      _controller: TelmaDashboardBundle:Tab:calculSTD
+
+telma_dashboard_resetdb:
+    path:     /resetdb
+    defaults:
+      _controller: TelmaDashboardBundle:Admin:resetdb
+
+telma_dashboard_resetparam:
+    path:     /resetparam
+    defaults:
+      _controller: TelmaDashboardBundle:Admin:resetparam
+
+telma_dashboard_loaddefault:
+    path:     /loaddefault
+    defaults:
+      _controller: TelmaDashboardBundle:Admin:loadDefault
